@@ -1,22 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from "@angular/forms";
-
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ConnectionComponent } from './authentication/connection/connection.component';
 import { InscriptionComponent } from './authentication/inscription/inscription.component';
-import {InscriptionService} from "./authentication/inscription/inscription.service";
+
+import { routes } from './authentication/authentication.route';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnectionComponent,
-    InscriptionComponent
+    InscriptionComponent,
+
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes),
+    BrowserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
