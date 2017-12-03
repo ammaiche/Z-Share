@@ -1,0 +1,14 @@
+li{
+  cursor: pointer;
+  list-style: none;
+}
+li:hover{
+  background : #BDBDBD;
+}
+#div-technologies{
+  position: relative;
+}
+ul{
+  position: relative;
+  right: 2.4em;
+}
