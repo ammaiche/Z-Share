@@ -5,10 +5,10 @@ import { InscriptionComponent } from './inscription/inscription.component';
 export const routes: Route[] = [
   {
     path: 'connection',
-    component: ConnectionComponent
+    component: ConnectionComponent,
   },
   {
-    path: 'inscription',
+    path: 'subscribe',
     component: InscriptionComponent
   }
 ];

@@ -1,5 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {InscriptionService} from "./inscription.service";
+import {UserInfo} from "./UserInfo";
 
 @Component({
   selector: 'app-inscription',
@@ -71,4 +72,15 @@ export class InscriptionComponent implements OnInit {
     this.suggestions = [];
   }
 
+  subscribe() : void{
+
+    const technologies =  this.technologiesToStr.trim().split(';');
+    const user : UserInfo = {
+      email : this.email,
+      firstName : this.firstName,
+      lastName : this.lastName,
+      technologies : technologies
+    };
+    this.inscriptionService.subscribe(user);
+  }
 }
