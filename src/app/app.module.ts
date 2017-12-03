@@ -5,6 +5,7 @@ import {FormsModule} from "@angular/forms";
 import { AppComponent } from './app.component';
 import { ConnectionComponent } from './authentication/connection/connection.component';
 import { InscriptionComponent } from './authentication/inscription/inscription.component';
+import {InscriptionService} from "./authentication/inscription/inscription.service";
 
 
 @NgModule({

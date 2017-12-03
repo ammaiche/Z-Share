@@ -1,31 +1,29 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {InscriptionService} from "./inscription.service";
 
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
-  styleUrls: ['./inscription.component.css']
+  styleUrls: ['./inscription.component.css'],
+  providers: [InscriptionService]
 })
 export class InscriptionComponent implements OnInit {
+
+  private technologies : string[];
+  private suggestions: string[];
+  private technologiesToStr: string = "";
+
+  private recordTyping:boolean = false;
+  private currentTechno:string  = '';
 
   private email: string;
   private firstName:string;
   private lastName:string;
 
-  private technologies: string[] = ["java", "c#", 'elestic search', 'agilité', 'scrum', 'Rest', 'c++'];
-
-  private technologiesToStr: string = "";
-
-  private suggestions: string[] = [];
-
-  private record:boolean = false;
-
-  private currentTechno:string  = '';
-
-  private currentTypingIndex = -1;
-
-  constructor() {}
+  constructor(private inscriptionService: InscriptionService) {}
 
   ngOnInit() {
+      this.technologies = this.inscriptionService.getTechnologies();
 
   }
 
@@ -35,11 +33,10 @@ export class InscriptionComponent implements OnInit {
 
     if(this.technologiesToStr.endsWith('#')) {
 
-      this.record = true;
-      this.currentTypingIndex= this.technologiesToStr.length;
-    }
+      this.recordTyping = true;
+   }
 
-    if(this.record) {
+    if(this.recordTyping) {
 
 
         if(event.keyCode>=65 && event.keyCode<=90){
@@ -56,22 +53,21 @@ export class InscriptionComponent implements OnInit {
           });
         }else{
 
-          this.currentTypingIndex = -1;
           this.currentTechno = '';
-          this.record = false;
+          this.recordTyping = false;
         }
     }
 
     if(event.key == '#') {
-      this.record = true;
-      this.currentTypingIndex= this.technologiesToStr.length;
-    }
+      this.recordTyping = true;
+     }
 
   }
 
   selectTechno(techno: string){
 
-    this.technologiesToStr = this.technologiesToStr.substr(0, this.currentTypingIndex).concat(techno);
+    this.technologiesToStr = this.technologiesToStr.substr(0,this.technologiesToStr.lastIndexOf('#')).concat(techno);
+    this.technologiesToStr+='; ';
     this.suggestions = [];
   }
 

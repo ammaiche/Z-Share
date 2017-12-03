@@ -21,7 +21,8 @@
       <label class="form-control-label" for="technologies">Technologies</label>
       <input [(ngModel)]="technologiesToStr" name="technologies" class="form-control"
              placeholder="Use hashtags ex #java" id="technologies"
-            (keydown)="checkTechnology($event)"/>
+            (keydown)="checkTechnology($event)"
+      />
       <ul class="list-group">
         <li *ngFor="let techno of suggestions" (click)="selectTechno(techno)" class="list-group-item">{{techno}}</li>
       </ul>
