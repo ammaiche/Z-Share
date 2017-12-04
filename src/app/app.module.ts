@@ -20,7 +20,6 @@ import { UserListComponent } from './user/user-list/user-list.component';
     NavigationComponent,
     UserComponent,
     UserListComponent,
-
   ],
   imports: [
     BrowserModule,

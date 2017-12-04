@@ -86,16 +86,16 @@ export class InscriptionComponent implements OnInit {
 
   }
 
-  subscribe(formValue) : void{
+  subscribe(formValue) : void {
 
 
-    const technologies =  this.technologiesToStr.trim().split(';');
-    const user : UserInfo = {
-      email : formValue.email,
-      firstName : formValue.firstName,
-      lastName : formValue.lastName,
-      technologies : technologies
+    const technologies = this.technologiesToStr.trim().split(';');
+    const user: UserInfo = {
+      email: formValue.email,
+      firstName: formValue.firstName,
+      lastName: formValue.lastName,
+      technologies: technologies
     };
     this.inscriptionService.subscribe(user);
-
+  }
 }
