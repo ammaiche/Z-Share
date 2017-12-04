@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {InscriptionService} from "./inscription.service";
-import {UserInfo} from "./UserInfo";
+import {InscriptionService} from './inscription.service';
+import {UserInfo} from './UserInfo';
+
 
 @Component({
   selector: 'app-inscription',
