@@ -7,6 +7,7 @@ import { ConnectionComponent } from './authentication/connection/connection.comp
 import { InscriptionComponent } from './authentication/inscription/inscription.component';
 
 import { routes } from './authentication/authentication.route';
+import { NavigationComponent } from './navigation/navigation.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { routes } from './authentication/authentication.route';
     AppComponent,
     ConnectionComponent,
     InscriptionComponent,
+    NavigationComponent,
 
   ],
   imports: [
