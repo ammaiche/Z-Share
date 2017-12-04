@@ -4,11 +4,11 @@ import { InscriptionComponent } from './inscription/inscription.component';
 
 export const authenticationRoutes: Route[] = [
   {
-    path: 'connection',
+    path: 'connect',
     component: ConnectionComponent,
   },
   {
-    path: 'inscription',
+    path: 'subscribe',
     component: InscriptionComponent
   }
 ];
