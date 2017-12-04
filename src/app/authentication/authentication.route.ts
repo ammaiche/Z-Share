@@ -2,13 +2,13 @@ import { Route } from '@angular/router';
 import { ConnectionComponent } from './connection/connection.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 
-export const routes: Route[] = [
+export const authenticationRoutes: Route[] = [
   {
     path: 'connection',
     component: ConnectionComponent,
   },
   {
-    path: 'subscribe',
+    path: 'inscription',
     component: InscriptionComponent
   }
 ];
