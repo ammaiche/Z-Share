@@ -1,26 +1,31 @@
 <div class="container">
 
-  <form class="col-md-6 offset-3">
+  <form class="col-md-6 offset-3" [formGroup]="ngForm">
     <div>
   <div class="form-group">
   <label class="form-control-label" for="email">Email-Zsoft</label>
-    <input type="email" class="form-control" name="email" id="email" [(ngModel)]="email">
+    <input type="email" class="form-control" id="email" formControlName="email">
+    <p *ngIf="!ngForm.controls['email'].valid && ngForm.controls['email'].touched" class="alert alert-danger">Please enter a valid email</p>
   </div>
 
   <div class="form-group">
     <label class="form-control-label" for="firstName">First name :</label>
-    <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="firstName">
+    <input type="text" class="form-control" id="firstName" formControlName="firstName">
+    <p *ngIf="!ngForm.controls['firstName'].valid && ngForm.controls['firstName'].touched" class="alert alert-danger">Please enter a valid name</p>
+
   </div>
 
   <div class="form-group">
       <label class="form-control-label" for="lastName">Last name :</label>
-      <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="lastName">
+      <input type="text" class="form-control" id="lastName" formControlName="lastName">
+    <p *ngIf="!ngForm.controls['lastName'].valid && ngForm.controls['lastName'].touched" class="alert alert-danger">Please enter a valid name</p>
+
   </div>
 
     <div class="form-group" id="div-technologies">
       <label class="form-control-label" for="technologies">Technologies</label>
-      <input  type="text" [(ngModel)]="technologiesToStr" name="technologies" class="form-control"
-             placeholder="Use hashtags ex #java" id="technologies"
+      <input  type="text" class="form-control"
+             placeholder="Use hashtags ex #java" formControlName="technologiesToStr" id="technologies"
             (keydown)="checkTechnology($event)"
       />
       <ul class="list-group">
@@ -29,10 +34,10 @@
     </div>
 
     <div class="form-group">
-      <button class="btn btn-success" (click)="subscribe()">Subscribe</button>
-    </div>
+      <button class="btn btn-success" (click)="subscribe(ngForm.value)" [disabled]="!ngForm.valid">Subscribe</button>
     </div>
 
+    </div>
   </form>
 
 </div>

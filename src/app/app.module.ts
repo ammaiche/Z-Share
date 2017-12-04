@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ConnectionComponent } from './authentication/connection/connection.component';
@@ -21,6 +21,7 @@ import { routes } from './authentication/authentication.route';
     FormsModule,
     RouterModule.forRoot(routes),
     BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

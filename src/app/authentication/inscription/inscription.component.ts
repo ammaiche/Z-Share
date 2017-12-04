@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {InscriptionService} from "./inscription.service";
 import {UserInfo} from "./UserInfo";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-inscription',
@@ -10,22 +11,34 @@ import {UserInfo} from "./UserInfo";
 })
 export class InscriptionComponent implements OnInit {
 
-  private technologies : string[];
+  private ngForm : FormGroup;
+  private technologies: string[];
   private suggestions: string[];
-  private technologiesToStr: string = "";
+  private technologiesToStr : string='';
 
-  private recordTyping:boolean = false;
-  private currentTechno:string  = '';
+  private recordTyping: boolean = false;
+  private currentTechno: string  = '';
 
-  private email: string;
-  private firstName:string;
-  private lastName:string;
 
-  constructor(private inscriptionService: InscriptionService) {}
+  constructor(private inscriptionService: InscriptionService, private formBuilder: FormBuilder) {
+
+      this.ngForm = this.formBuilder.group({
+        'email' : [null, Validators.compose([Validators.required, Validators.email])],
+        'firstName' : [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+        'lastName' :  [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+        'technologiesToStr' : ''
+      });
+  }
+
 
   ngOnInit() {
-      this.technologies = this.inscriptionService.getTechnologies();
+    this.technologies = this.inscriptionService.getTechnologies();
 
+    this.ngForm.get('technologiesToStr').valueChanges.subscribe(
+      (value)=>{
+        this.technologiesToStr = value;
+      }
+    );
   }
 
   checkTechnology(event){
@@ -62,25 +75,27 @@ export class InscriptionComponent implements OnInit {
     if(event.key == '#') {
       this.recordTyping = true;
      }
-
   }
 
   selectTechno(techno: string){
 
     this.technologiesToStr = this.technologiesToStr.substr(0,this.technologiesToStr.lastIndexOf('#')).concat(techno);
-    this.technologiesToStr+='; ';
+    this.technologiesToStr += '; ';
     this.suggestions = [];
+    this.ngForm.get('technologiesToStr').setValue(this.technologiesToStr);
+
   }
 
-  subscribe() : void{
+  subscribe(formValue) : void{
+
 
     const technologies =  this.technologiesToStr.trim().split(';');
     const user : UserInfo = {
-      email : this.email,
-      firstName : this.firstName,
-      lastName : this.lastName,
+      email : formValue.email,
+      firstName : formValue.firstName,
+      lastName : formValue.lastName,
       technologies : technologies
     };
     this.inscriptionService.subscribe(user);
-  }
+
 }
