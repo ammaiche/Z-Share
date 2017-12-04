@@ -14,8 +14,8 @@ export class InscriptionComponent implements OnInit {
   private suggestions: string[];
   private technologiesToStr: string = "";
 
-  private recordTyping:boolean = false;
-  private currentTechno:string  = '';
+  private recordTyping: boolean = false;
+  private currentTechno: string  = '';
 
   private email: string;
   private firstName:string;

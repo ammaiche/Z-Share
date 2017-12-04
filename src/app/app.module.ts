@@ -8,6 +8,8 @@ import { InscriptionComponent } from './authentication/inscription/inscription.c
 
 import { routes } from './authentication/authentication.route';
 import { NavigationComponent } from './navigation/navigation.component';
+import { UserComponent } from './user/user.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     ConnectionComponent,
     InscriptionComponent,
     NavigationComponent,
+    UserComponent,
+    UserListComponent,
 
   ],
   imports: [
