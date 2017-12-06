@@ -20,22 +20,24 @@ export class InscriptionComponent implements OnInit {
   private currentTechno: string  = '';
 
 
-  constructor(private inscriptionService: InscriptionService, private formBuilder: FormBuilder) {
+  constructor(private inscriptionService?: InscriptionService, private formBuilder?: FormBuilder) {
 
-      this.ngForm = this.formBuilder.group({
-        'email' : [null, Validators.compose([Validators.required, Validators.email])],
-        'firstName' : [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-        'lastName' :  [null, Validators.compose([Validators.required, Validators.minLength(3)])],
-        'technologiesToStr' : ''
-      });
   }
 
 
   ngOnInit() {
+
+    this.ngForm = this.formBuilder.group({
+      'email' : [null, Validators.compose([Validators.required, Validators.email])],
+      'firstName' : [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'lastName' :  [null, Validators.compose([Validators.required, Validators.minLength(3)])],
+      'technologiesToStr' : ''
+    });
+
     this.technologies = this.inscriptionService.getTechnologies();
 
     this.ngForm.get('technologiesToStr').valueChanges.subscribe(
-      (value)=>{
+      (value) => {
         this.technologiesToStr = value;
       }
     );
